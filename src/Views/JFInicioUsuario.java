@@ -30,6 +30,7 @@ public class JFInicioUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnIniciarSesion.setBackground(new java.awt.Color(51, 255, 0));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
