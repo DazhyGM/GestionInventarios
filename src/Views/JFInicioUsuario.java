@@ -24,13 +24,14 @@ public class JFInicioUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtCorreo.setBackground(new java.awt.Color(204, 255, 255));
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
 
-        btnIniciarSesion.setBackground(new java.awt.Color(51, 255, 0));
+        btnIniciarSesion.setBackground(new java.awt.Color(255, 102, 102));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -38,6 +39,7 @@ public class JFInicioUsuario extends javax.swing.JFrame {
             }
         });
 
+        txtContraseña.setBackground(new java.awt.Color(204, 255, 255));
         txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContraseñaActionPerformed(evt);
