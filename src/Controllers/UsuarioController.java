@@ -1,34 +1,27 @@
-
 package Controllers;
+
 import Models.UsuarioModel;
 import Services.UsuarioService;
+import java.util.List;
 
 public class UsuarioController {
-    public UsuarioService usuarioService;
-    public UsuarioController(){
+    
+    private UsuarioService usuarioService;
+
+    public UsuarioController() {
         this.usuarioService = new UsuarioService();
-        
-    } 
-    public boolean CrearUsuario(){
-        boolean response = usuarioService.RegistrarUsuario();
-        return response;
-    }
-    
-     public UsuarioModel BuscarUsuario(){
-        UsuarioModel response = usuarioService.VerUsuario();
-        return response;
-    }
-    
-    
-    public boolean ValidarUsuario(String correo, String contraseña){
-        UsuarioModel usuarioDb = usuarioService.VerUsuario();
-        if(usuarioDb.correo.equals(correo)&& usuarioDb.contraseña.equals(contraseña)){
-            return true;
-            
-        } else {
-            return false;
-        }
     }
 
-    
+    public void crearUsuario(String numeroDocumento, String nombre, String apellido, String correo, String contrasena, String telefono) {
+        UsuarioModel usuario = new UsuarioModel(numeroDocumento, nombre, apellido, correo, contrasena, telefono);
+        usuarioService.agregarUsuario(usuario);
+    }
+
+    public boolean login(String correo, String contrasena) {
+        return usuarioService.verificarUsuario(correo, contrasena);
+    }
+
+    public List<UsuarioModel> obtenerUsuarios() {
+        return usuarioService.listarUsuarios();
+}
 }

@@ -1,10 +1,7 @@
-import Views.JFInicioUsuario;
-import javax.swing.JFrame;
-public class Main {
+import Views.JFInicio;
 
+public class Main {
     public static void main(String[] args) {
-JFInicioUsuario jframe = new JFInicioUsuario();
-jframe.setVisible(true);
+        java.awt.EventQueue.invokeLater(() -> new JFInicio().setVisible(true));
     }
-    
 }
