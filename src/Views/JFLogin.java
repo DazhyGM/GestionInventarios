@@ -120,6 +120,10 @@ public class JFLogin extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+        new JFRegistrarProductos().setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void textCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCorreoActionPerformed
