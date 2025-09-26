@@ -13,14 +13,14 @@ public class ProductosService {
 
     public void agregarProductos(ProductosModel producto){
         Connection conexion = Data.getConnection();
-
-        String sql = "INSERT INTO producto (id, nombre, cantidad, referencia, precio) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO productos (nombre, descripcion, categoria, precio, stock, estado_id) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)){
-            stmt.setInt(1, producto.getId());
-            stmt.setString(2, producto.getNombre());
-            stmt.setInt(3, producto.getCantidad());
-            stmt.setString(4, producto.getReferencia());
-            stmt.setDouble(5, producto.getPrecio());
+            stmt.setString(1, producto.getNombre());
+            stmt.setString(2, producto.getDescripcion());
+            stmt.setString(3, producto.getCategoria());
+            stmt.setDouble(4, producto.getPrecio());
+            stmt.setInt(5, producto.getStock());
+            stmt.setInt(6, producto.getEstadoId()); 
 
             stmt.executeUpdate();
             System.out.println("Producto agregado correctamente");
@@ -32,10 +32,12 @@ public class ProductosService {
         }
     }
 
+    // --- 2. Método para Listar Productos (Actualizado con filtro y estadoId) ---
     public List<ProductosModel> listarProductos() {
         List<ProductosModel> productos = new ArrayList<>();
         Connection conexion = Data.getConnection();
-        String sql = "SELECT * FROM producto";
+        String sql = "SELECT id, nombre, descripcion, categoria, precio, stock, estado_id FROM productos WHERE estado_id = 1"; 
+        
         try (PreparedStatement stmt = conexion.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -43,14 +45,15 @@ public class ProductosService {
                 productos.add(new ProductosModel(
                     rs.getInt("id"),
                     rs.getString("nombre"),
-                    rs.getInt("cantidad"),
-                    rs.getString("referencia"),
-                    rs.getDouble("precio")
-
+                    rs.getString("descripcion"),
+                    rs.getString("categoria"),
+                    rs.getDouble("precio"),
+                    rs.getInt("stock"),
+                    rs.getInt("estado_id")
                 ));
             }
         } catch (SQLException e) {
-            System.out.println("Error al listar productos: " + e.getMessage());
+            System.out.println("Error al momento de listar productos: " + e.getMessage());
         } finally {
             Data.desconectar(conexion);
         }
@@ -58,14 +61,17 @@ public class ProductosService {
     }
     
     public void actualizarProductos(ProductosModel producto){
-    Connection conexion = Data.getConnection();
-    String sql = "UPDATE producto SET nombre=?, cantidad=?, referencia=?, precio=? WHERE id=? ";
-     try (PreparedStatement stmt = conexion.prepareStatement(sql)){           
+        Connection conexion = Data.getConnection();
+        
+        String sql = "UPDATE productos SET nombre=?, descripcion=?, categoria=?, precio=?, stock=?, estado_id=? WHERE id=? ";
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)){            
             stmt.setString(1, producto.getNombre());
-            stmt.setInt(2, producto.getCantidad());
-            stmt.setString(3, producto.getReferencia());
+            stmt.setString(2, producto.getDescripcion());
+            stmt.setString(3, producto.getCategoria());
             stmt.setDouble(4, producto.getPrecio());
-            stmt.setInt(5, producto.getId());
+            stmt.setInt(5, producto.getStock());
+            stmt.setInt(6, producto.getEstadoId());
+            stmt.setInt(7, producto.getId());
 
             stmt.executeUpdate();
             System.out.println("Producto actualizado");
@@ -76,7 +82,51 @@ public class ProductosService {
             Data.desconectar(conexion);
         }
     }
+    
+    public ProductosModel detalleProducto(int id){
+        Connection conexion = Data.getConnection();
+        String sql = "SELECT id, nombre, descripcion, categoria, precio, stock, estado_id FROM productos WHERE id = ?"; 
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)){
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return new ProductosModel(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("descripcion"),
+                        rs.getString("categoria"),
+                        rs.getDouble("precio"),
+                        rs.getInt("stock"),
+                        rs.getInt("estado_id")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al mostrar detalle del producto: " + e.getMessage());
+        } finally {
+            Data.desconectar(conexion);
+        }
+        return null; 
+    }
+
+
+    public void eliminarProducto(int id){
+        Connection conexion = Data.getConnection();
+        String sql = "UPDATE productos SET estado_id = 2 WHERE id = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)){
+            stmt.setInt(1, id);
+            
+            int filasAfectadas = stmt.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Producto con ID " + id + " cambio a estado Inactivo.");
+            } else {
+                 System.out.println("No se encontró el producto con ID " + id + " para marcarlo como Inactivo.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al realizar la el cambio de estado del producto: " + e.getMessage());
+        } finally {
+            Data.desconectar(conexion);
+        }
+    }
 }
-
-
-

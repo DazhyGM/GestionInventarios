@@ -1,68 +1,81 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
-
 
 public class ProductosModel {
     private int id;
     private String nombre;
-    private int cantidad;
-    private String referencia;
+    private String descripcion;
+    private String categoria;
     private double precio;
+    private int stock;
+    private int estadoId;
     
     
     public ProductosModel(){
     }
     
-    
-    public ProductosModel(int id, String nombre, int cantidad, String referencia, double precio){
+    public ProductosModel(int id, String nombre, String descripcion, String categoria, double precio, int stock, int estadoId){
         this.id = id;
         this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.referencia = referencia;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
         this.precio = precio;
-                   
+        this.stock = stock;
+        this.estadoId = estadoId;
     }
+    
+
+    public ProductosModel(int id, String nombre, String descripcion, String categoria, double precio, int stock){
+
+        this(id, nombre, descripcion, categoria, precio, stock, 1);
+    }
+
     
     public int getId(){
-    return id;
+        return id;
     }
-    
     public void setId(int id) {
         this.id = id;
     }
     
     public String getNombre(){
-    return nombre;
+        return nombre;
     }
-    
     public void setNombre(String nombre){
-    this.nombre = nombre;    
+        this.nombre = nombre;   
     }
     
-    public int getCantidad(){
-    return cantidad;
+    public String getDescripcion(){
+        return descripcion;
     }
-    public void setCantidad(int cantidad){
-            this.cantidad = cantidad;
-    }
-    
-    public String getReferencia(){
-    return referencia;
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
     }
     
-    public void setReferencia( String referencia){
-    this.referencia = referencia; 
+    public String getCategoria(){
+        return categoria;
     }
-    
+    public void setCategoria(String categoria){
+        this.categoria = categoria;
+    }
+            
     public double getPrecio(){
-    return precio;
+        return precio;
+    }
+    public void setPrecio(double precio){
+        this.precio = precio;
     }
     
-    public void setPrecio(int precio){
-    this.precio = precio;
+    public int getStock(){
+        return stock;
+    }
+    public void setStock(int stock){
+    this.stock = stock;
+    }
+    
+    public int getEstadoId() {
+        return estadoId;
+    }
+    public void setEstadoId(int estadoId) {
+        this.estadoId = estadoId;
     }
 }
-
