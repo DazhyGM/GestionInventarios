@@ -42,7 +42,6 @@ public class ProductosController {
 
 
     public List<ProductosModel> listarProductos() {
-        // Este método ya solo trae productos con estado_id = 1 (Activo) gracias al Service
         return productoService.listarProductos();
     }
     

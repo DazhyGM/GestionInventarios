@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.UsuarioController; //AQUI IMPORTAMOS EL CONTROLADOR
+import Controllers.UsuarioController;
 import javax.swing.JOptionPane;
 
 
@@ -8,10 +8,10 @@ public class JFRegistro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFRegistro.class.getName());
     
-    private UsuarioController usuarioController; //CONTROLADOR
+    private UsuarioController usuarioController;
     public JFRegistro() {
         initComponents();
-        usuarioController = new UsuarioController(); // AQUI INICIALIZAMOS COMO TAL EL CONTROLADOR 
+        usuarioController = new UsuarioController();
     }
     
      @SuppressWarnings("unchecked")

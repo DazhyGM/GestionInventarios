@@ -32,7 +32,6 @@ public class ProductosService {
         }
     }
 
-    // --- 2. Método para Listar Productos (Actualizado con filtro y estadoId) ---
     public List<ProductosModel> listarProductos() {
         List<ProductosModel> productos = new ArrayList<>();
         Connection conexion = Data.getConnection();
@@ -108,7 +107,6 @@ public class ProductosService {
         }
         return null; 
     }
-
 
     public void eliminarProducto(int id){
         Connection conexion = Data.getConnection();

@@ -1,7 +1,7 @@
 package Views;
 import Controllers.ProductosController;
 import javax.swing.JOptionPane;
-import java.util.List;          // ← para usar List<ProductosModel>
+import java.util.List;     
 import Models.ProductosModel; 
 
 public class JFactualizarProductos extends javax.swing.JFrame {
@@ -243,7 +243,7 @@ private void cargarDatosProducto() {
         String nombre = textNombre.getText();
         String descripcion = textDescripcion.getText();
         String categoria = (String) comboCategorias.getSelectedItem();
-        String precioStr = textPrecio.getText().trim();       // ✅
+        String precioStr = textPrecio.getText().trim();      
         String stockStr = textStock.getText().trim();
         if (nombre.isEmpty() || descripcion.isEmpty() || categoria.isEmpty() || precioStr.isEmpty() || stockStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
@@ -253,13 +253,11 @@ private void cargarDatosProducto() {
             double precio = Double.parseDouble(precioStr);
             int stock = Integer.parseInt(stockStr);
 
-            // 3. Llamar al controller para actualizar
             modificarProductos.modificarProductos(idProducto, nombre, descripcion, categoria,precio, stock);
 
-            // 4. Mostrar mensaje de éxito
             JOptionPane.showMessageDialog(this, "Producto actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             if (onProductoActualizado != null) {
-                onProductoActualizado.run(); // ← Esto recargará la tabla
+                onProductoActualizado.run();
             }
             this.dispose();
 

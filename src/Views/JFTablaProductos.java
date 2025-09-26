@@ -23,14 +23,14 @@ public class JFTablaProductos extends javax.swing.JFrame {
                 new Object[][]{},
                 new String[]{"ID", "Nombre", "Descripción", "Categoría", "Precio", "Stock", "Modificar", "Eliminar", "Ver"}
         ) {
+            @Override
             public boolean isCellEditable(int row, int column) {
                 return column >= 6;
             }
         };
         TablaProductos.setModel(tableModel);
 
-        // Configurar renderers para que las celdas de acciones se vean como botones
-        for (int i = 6; i <= 8; i++) {  // de 6 a 8, no de 7 a 9
+        for (int i = 6; i <= 8; i++) { 
             TablaProductos.getColumnModel().getColumn(i).setCellRenderer(new BotonRenderer());
             TablaProductos.getColumnModel().getColumn(i).setCellEditor(new BotonEditor());
         }
@@ -95,7 +95,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
                     int id = (int) tableModel.getValueAt(filaSeleccionada, 0);
                     switch (columnaSeleccionada) {
                         case 6:
-                            int fila = TablaProductos.getSelectedRow(); // Usa el nombre correcto
+                            int fila = TablaProductos.getSelectedRow();
                             if (fila != -1) {
                                 new JFactualizarProductos(id, JFTablaProductos.this::cargarProductos).setVisible(true);
                             } else {
@@ -104,8 +104,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
 
                             break;
                         case 7:
-                            String nombreProducto = (String) tableModel.getValueAt(filaSeleccionada, 1);
-                            // 1. Pedir confirmación al usuario (mejora el mensaje para indicar que es lógico)
+                            String nombreProducto = (String) tableModel.getValueAt(filaSeleccionada, 1);       
                             int confirm = JOptionPane.showConfirmDialog(JFTablaProductos.this,
                                     "¿Está seguro de marcar el producto '" + nombreProducto + "' (ID: "+ id +") como INACTIVO?",
                                     "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
