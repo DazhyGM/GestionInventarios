@@ -3,20 +3,20 @@ package Views;
 import Controllers.ProductosController;
 import javax.swing.JOptionPane;
 
-public class JFregistrarProductos extends javax.swing.JFrame {
+public class JFRegistrarProductos extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFregistrarProductos.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFRegistrarProductos.class.getName());
     private ProductosController productoController;
     
 
     private JFTablaProductos parentWindow;
-    public JFregistrarProductos(JFTablaProductos parent) {
+    public JFRegistrarProductos(JFTablaProductos parent) {
         this();
         this.parentWindow = parent;
     }
     
             
-    public JFregistrarProductos() {
+    public JFRegistrarProductos() {
         initComponents();
         productoController = new ProductosController();
     }
@@ -326,7 +326,7 @@ public class JFregistrarProductos extends javax.swing.JFrame {
 
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(() -> new JFregistrarProductos().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new JFRegistrarProductos().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

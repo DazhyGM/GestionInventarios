@@ -12,6 +12,15 @@ import java.util.List;
 public class UsuarioService {
     
     public void agregarUsuario(UsuarioModel usuario) {
+        
+        if (!CorreoValido(usuario.getCorreo())) {
+            System.out.println("Correo electrónico inválido. No se puede registrar el usuario.");
+            return;
+        }
+        if (!DocumentoValido(usuario.getNumeroDocumento())) {
+            System.out.println("Número de documento inválido. Debe contener solo números.");
+            return;
+        }
         Connection conexion = Data.getConnection();
 
         String sql = "INSERT INTO usuario (numero_documento, nombre, apellido, correo, contrasena, telefono) VALUES (?, ?, ?, ?, ?, ?)";
@@ -94,5 +103,17 @@ public class UsuarioService {
             Data.desconectar(conexion);
         }
         return lista;
-}
+    }
+    
+    private boolean CorreoValido(String correo) {
+        if (correo == null) return false;
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        return correo.matches(regex);
+    }
+    
+    private boolean DocumentoValido(String numeroDocumento) {
+        if (numeroDocumento == null) return false;
+        return numeroDocumento.matches("\\d+");
+    }
+
 }

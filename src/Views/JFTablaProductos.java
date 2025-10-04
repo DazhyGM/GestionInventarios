@@ -320,7 +320,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarActionPerformed
 
-    JFregistrarProductos registrar = new JFregistrarProductos(this); 
+    JFRegistrarProductos registrar = new JFRegistrarProductos(this); 
     this.setVisible(false);
 
         registrar.addWindowListener(new java.awt.event.WindowAdapter() {
