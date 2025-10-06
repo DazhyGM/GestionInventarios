@@ -11,15 +11,14 @@ import java.util.List;
 
 public class UsuarioService {
     
-    public void agregarUsuario(UsuarioModel usuario) {
+    public String agregarUsuario(UsuarioModel usuario) {
         
         if (!CorreoValido(usuario.getCorreo())) {
-            System.out.println("Correo electrónico inválido. No se puede registrar el usuario.");
-            return;
+            return "Correo electrónico inválido. No se puede registrar el usuario.";
         }
         if (!DocumentoValido(usuario.getNumeroDocumento())) {
-            System.out.println("Número de documento inválido. Debe contener solo números.");
-            return;
+            
+            return "Número de documento inválido. Debe contener solo números.";
         }
         Connection conexion = Data.getConnection();
 
@@ -37,10 +36,10 @@ public class UsuarioService {
             stmt.setString(6, usuario.getTelefono());
             
             stmt.executeUpdate();
-            System.out.println("Usuario agregado correctamente.");
+            return "Usuario agregado correctamente.";
             
         } catch (SQLException e) {
-            System.out.println("Error al agregar usuario: " + e.getMessage());
+            return "Error al agregar usuario: " + e.getMessage();
         } finally {
             Data.desconectar(conexion);
         }

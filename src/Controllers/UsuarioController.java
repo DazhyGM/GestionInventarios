@@ -12,9 +12,9 @@ public class UsuarioController {
         this.usuarioService = new UsuarioService();
     }
 
-    public void crearUsuario(String numeroDocumento, String nombre, String apellido, String correo, String contrasena, String telefono) {
+    public String crearUsuario(String numeroDocumento, String nombre, String apellido, String correo, String contrasena, String telefono) {
         UsuarioModel usuario = new UsuarioModel(numeroDocumento, nombre, apellido, correo, contrasena, telefono);
-        usuarioService.agregarUsuario(usuario);
+        return usuarioService.agregarUsuario(usuario);
     }
 
     public boolean login(String correo, String contrasena) {

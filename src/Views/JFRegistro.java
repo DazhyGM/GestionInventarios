@@ -298,8 +298,12 @@ public class JFRegistro extends javax.swing.JFrame {
             return;
         }
 
-        usuarioController.crearUsuario(documento, nombre, apellido, correo, contrasena, telefono);
+             String resultado = usuarioController.crearUsuario(documento, nombre, apellido, correo, contrasena, telefono);
 
+        if (!"OK".equals(resultado)) {
+            JOptionPane.showMessageDialog(this, resultado, "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+    }
 
         JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
 

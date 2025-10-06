@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Controllers/ProductosController.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Views/JFRegistrarProductos.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Views/JFPaginaPrincipal.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Views/JFdetalleProducto.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Models/ProductosModel.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Views/JFactualizarProductos.java</file>
+            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Models/UsuarioModel.java</file>
             <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Services/UsuarioService.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Views/JFTablaProductos.java</file>
             <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Controllers/UsuarioController.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/DB/Data.java</file>
             <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Views/JFRegistro.java</file>
-            <file>file:/C:/Users/Estudiantes/Desktop/GestionInventarios/src/Services/ProductosService.java</file>
         </group>
     </open-files>
 </project-private>
