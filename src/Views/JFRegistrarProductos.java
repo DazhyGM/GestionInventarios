@@ -19,6 +19,7 @@ public class JFRegistrarProductos extends javax.swing.JFrame {
     public JFRegistrarProductos() {
         initComponents();
         productoController = new ProductosController();
+        this.setLocationRelativeTo(null);
     }
 
   
@@ -126,6 +127,7 @@ public class JFRegistrarProductos extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registar");
+        btnRegistrar.setFocusPainted(false);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -169,6 +171,7 @@ public class JFRegistrarProductos extends javax.swing.JFrame {
         });
 
         btnRegresar.setText("Regresar");
+        btnRegresar.setFocusPainted(false);
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);

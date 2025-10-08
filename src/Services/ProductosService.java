@@ -127,4 +127,79 @@ public class ProductosService {
             Data.desconectar(conexion);
         }
     }
+    
+    public List<ProductosModel> obtenerProductosActivos() {
+        List<ProductosModel> productos = new ArrayList<>();
+        Connection conexion = Data.getConnection();
+        String sql = "SELECT id, nombre FROM productos WHERE estado_id = 1";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                ProductosModel p = new ProductosModel();
+                p.setId(rs.getInt("id"));
+                p.setNombre(rs.getString("nombre"));
+                productos.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener productos activos: " + e.getMessage());
+        } finally {
+            Data.desconectar(conexion);
+        }
+
+        return productos;
+    }
+        
+        public int descontarStockYObtener(int idProducto, int cantidad) {
+            Connection conexion = Data.getConnection();
+            String sql = "UPDATE productos SET stock = stock - ? WHERE id = ? AND stock >= ?";
+
+            try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+                stmt.setInt(1, cantidad);
+                stmt.setInt(2, idProducto);
+                stmt.setInt(3, cantidad);
+
+                int filasAfectadas = stmt.executeUpdate();
+                if (filasAfectadas > 0) {
+                   
+        String consultaStock = "SELECT stock FROM productos WHERE id = ?";
+                    try (PreparedStatement ps = conexion.prepareStatement(consultaStock)) {
+                        ps.setInt(1, idProducto);
+                        try (ResultSet rs = ps.executeQuery()) {
+                            if (rs.next()) {
+                                return rs.getInt("stock");
+                            }
+                        }
+                    }
+                }
+                return -1;
+            } catch (SQLException e) {
+                System.out.println("Error al descontar stock: " + e.getMessage());
+                return -1;
+            } finally {
+                Data.desconectar(conexion);
+            }
+        }
+
+        
+        public boolean ingresarStock(int idProducto, int cantidad) {
+        Connection conexion = Data.getConnection();
+        String sql = "UPDATE productos SET stock = stock + ? WHERE id = ?";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, cantidad);
+            stmt.setInt(2, idProducto);
+
+            int filasAfectadas = stmt.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            System.out.println("Error al ingresar stock: " + e.getMessage());
+            return false;
+        } finally {
+            Data.desconectar(conexion);
+        }
+    }
+    
 }

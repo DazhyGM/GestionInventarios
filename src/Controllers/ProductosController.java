@@ -3,6 +3,7 @@ package Controllers;
 import Models.ProductosModel;
 import Services.ProductosService;
 import java.util.List;
+import javax.swing.JComboBox;
 
 public class ProductosController {
     private ProductosService productoService;

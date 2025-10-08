@@ -23,5 +23,28 @@ public class UsuarioController {
 
     public List<UsuarioModel> obtenerUsuarios() {
         return usuarioService.listarUsuarios();
-}
+    }
+    
+    public String recuperarContrasena(String correo) {
+        UsuarioModel usuario = usuarioService.obtenerUsuarioPorCorreo(correo);
+        if (usuario == null) {
+            return "No existe un usuario registrado con ese correo.";
+        }
+
+        String contrasenaTemporal = usuarioService.generarContrasenaTemporal();
+        boolean actualizada = usuarioService.actualizarContrasena(usuario.getNumeroDocumento(), contrasenaTemporal);
+
+        if (actualizada) {
+            EnvioCorreoController correoController = new EnvioCorreoController();
+            correoController.enviarRecuperacionContrasena(usuario, contrasenaTemporal);
+            return "Se ha enviado una nueva contraseña temporal al correo: " + correo;
+        } else {
+            return "Error al actualizar la contraseña. Inténtelo más tarde.";
+        }
+    }
+    
+    public boolean actualizarContrasena(String numeroDocumento, String nuevaContrasena) {
+        return usuarioService.actualizarContrasena(numeroDocumento, nuevaContrasena);
+    }
+
 }

@@ -19,6 +19,7 @@ public class JFdetalleProducto extends javax.swing.JFrame {
         this.verProductos = new ProductosController();
         initComponents();
         cargarDatosProducto();
+        this.setLocationRelativeTo(null);
     }
     
     private void cargarDatosProducto() {
@@ -79,6 +80,7 @@ public class JFdetalleProducto extends javax.swing.JFrame {
         btnCerrar.setBackground(new java.awt.Color(0, 0, 0));
         btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setText("Cerrar");
+        btnCerrar.setFocusPainted(false);
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);

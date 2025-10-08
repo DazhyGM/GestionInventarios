@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class UsuarioService {
     
@@ -36,9 +37,20 @@ public class UsuarioService {
             stmt.setString(6, usuario.getTelefono());
             
             stmt.executeUpdate();
-            return "Usuario agregado correctamente.";
+            return "OK";
             
         } catch (SQLException e) {
+            
+            if (e.getMessage().contains("Duplicate entry")) {
+            if (e.getMessage().contains("numero_documento")) {
+                return "Ya existe un usuario registrado con ese número de documento.";
+            } else if (e.getMessage().contains("correo")) {
+                return "Ya existe un usuario registrado con ese correo electrónico.";
+            } else {
+                return "El usuario ya existe en el sistema.";
+            }
+        }
+            
             return "Error al agregar usuario: " + e.getMessage();
         } finally {
             Data.desconectar(conexion);
@@ -58,15 +70,27 @@ public class UsuarioService {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                System.out.println("Usuario encontrado: " + rs.getString("nombre"));
+                
+                UsuarioModel usuario = new UsuarioModel(
+                rs.getString("numero_documento"),
+                rs.getString("nombre"),
+                rs.getString("apellido"),
+                rs.getString("correo"),
+                rs.getString("contrasena"),
+                rs.getString("telefono")
+            );
+
+            Models.SesionUsuario.setUsuarioActual(usuario);
+                
+                System.out.println("Usuario autenticado: " + usuario.getNombre());
                 return true;
             } else {
-                System.out.println("Usuario no encontrado.");
+                System.err.println("Usuario no encontrado.");
                 return false;
             }
             
         } catch (SQLException e) {
-            System.out.println("Error al verificar usuario: " + e.getMessage());
+            System.err.println("Error al verificar usuario: " + e.getMessage());
             return false;
         } finally {
             Data.desconectar(conexion);
@@ -97,7 +121,7 @@ public class UsuarioService {
             System.out.println("Usuarios listados correctamente. Total: " + lista.size());
             
         } catch (SQLException e) {
-            System.out.println("Error al listar usuarios: " + e.getMessage());
+            System.err.println("Error al listar usuarios: " + e.getMessage());
         } finally {
             Data.desconectar(conexion);
         }
@@ -113,6 +137,63 @@ public class UsuarioService {
     private boolean DocumentoValido(String numeroDocumento) {
         if (numeroDocumento == null) return false;
         return numeroDocumento.matches("\\d+");
+    }
+    
+    public UsuarioModel obtenerUsuarioPorCorreo(String correo) {
+        Connection conexion = Data.getConnection();
+        UsuarioModel usuario = null;
+
+        try {
+            String sql = "SELECT * FROM usuario WHERE correo = ?";
+            PreparedStatement stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, correo);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                usuario = new UsuarioModel(
+                    rs.getString("numero_documento"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("correo"),
+                    rs.getString("contrasena"),
+                    rs.getString("telefono")
+                );
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener usuario por correo: " + e.getMessage());
+        } finally {
+            Data.desconectar(conexion);
+        }
+
+        return usuario;
+    }
+    
+    public String generarContrasenaTemporal() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 8; i++) {
+            sb.append(caracteres.charAt(random.nextInt(caracteres.length())));
+        }
+        return sb.toString();
+    }
+    
+    public boolean actualizarContrasena(String numeroDocumento, String nuevaContrasena) {
+        Connection conexion = Data.getConnection();
+
+        try {
+            String sql = "UPDATE usuario SET contrasena = ? WHERE numero_documento = ?";
+            PreparedStatement stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, nuevaContrasena);
+            stmt.setString(2, numeroDocumento);
+            int filas = stmt.executeUpdate();
+            return filas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar contraseña: " + e.getMessage());
+            return false;
+        } finally {
+            Data.desconectar(conexion);
+        }
     }
 
 }

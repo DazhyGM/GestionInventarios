@@ -36,6 +36,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
         }
 
         cargarProductos();
+        this.setLocationRelativeTo(null);
     }
 
     public void cargarProductos() {
@@ -253,6 +254,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TablaProductos);
 
         btnRegistar.setText("Agregar");
+        btnRegistar.setFocusPainted(false);
         btnRegistar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistarActionPerformed(evt);
@@ -260,6 +262,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
         });
 
         btnRegresar.setText("Regresar");
+        btnRegresar.setFocusPainted(false);
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);

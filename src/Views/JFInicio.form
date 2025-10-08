@@ -120,6 +120,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="INICIO SESION"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInicioActionPerformed"/>

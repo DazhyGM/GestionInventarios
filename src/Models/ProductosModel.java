@@ -78,4 +78,10 @@ public class ProductosModel {
     public void setEstadoId(int estadoId) {
         this.estadoId = estadoId;
     }
+    
+    @Override
+    public String toString() {
+    return nombre;
+}
+    
 }

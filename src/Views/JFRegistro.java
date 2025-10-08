@@ -12,6 +12,7 @@ public class JFRegistro extends javax.swing.JFrame {
     public JFRegistro() {
         initComponents();
         usuarioController = new UsuarioController();
+        this.setLocationRelativeTo(null);
     }
     
      @SuppressWarnings("unchecked")
@@ -305,7 +306,7 @@ public class JFRegistro extends javax.swing.JFrame {
             return;
     }
 
-        JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
+        JOptionPane.showMessageDialog(this, "Usuario registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
 
         textDocumento.setText("");

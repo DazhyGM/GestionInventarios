@@ -18,6 +18,7 @@ public class JFactualizarProductos extends javax.swing.JFrame {
     this.onProductoActualizado = onProductoActualizado;
     System.out.println("Abriendo JFactualizarProductos con id = " + idProducto);
     cargarDatosProducto();
+    this.setLocationRelativeTo(null);
 }
 
 
