@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class ProductosService {
 
@@ -201,5 +203,45 @@ public class ProductosService {
             Data.desconectar(conexion);
         }
     }
+        
+        public DefaultCategoryDataset graficarProductos(){
+        DefaultCategoryDataset dataset =  new DefaultCategoryDataset();
+        String sql = "SELECT nombre, SUM(stock) AS total_stock FROM productos WHERE estado_id = 1 GROUP BY nombre";
+     
+        try (Connection conexion = Data.getConnection();
+            PreparedStatement stmt = conexion.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                int stock = rs.getInt("total_stock");
+                dataset.addValue(stock, "Stock total", nombre);
+            }
+            } catch (SQLException e) {
+            System.out.println("Error al obtener datos para gráfico: " + e.getMessage());
+            }
+
+            return dataset;
+        }
+    
+    
+        public DefaultPieDataset GraficarEstados(){
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        String sql = "SELECT e.nombre AS estado, COUNT(p.id) AS total_productos FROM productos p INNER JOIN estados_producto e ON p.estado_id = e.id WHERE p.estado_id IN (1, 2) GROUP BY e.nombre";
+        try (Connection conexion = Data.getConnection();
+            PreparedStatement stmt = conexion.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String estado = rs.getString("estado");
+                int total = rs.getInt("total_productos");
+                dataset.setValue(estado + " (" + total + ")", total);
+            }
+            } catch (SQLException e) {
+            System.out.println("Error al obtener datos para la grafica: " + e.getMessage());
+            }
+
+            return dataset;
+        }
     
 }

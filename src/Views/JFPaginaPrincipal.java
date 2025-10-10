@@ -47,9 +47,9 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
         Productos = new java.awt.Label();
         Stock = new java.awt.Label();
         Productos2 = new java.awt.Label();
-        jButtonEstadisticas = new javax.swing.JButton();
         jButtonStock = new javax.swing.JButton();
         jButtonProductos = new javax.swing.JButton();
+        btnInformes = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabelUsuario = new javax.swing.JLabel();
 
@@ -90,14 +90,6 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
         Productos2.setName("Productos"); // NOI18N
         Productos2.setText("Estadisticas");
 
-        jButtonEstadisticas.setBackground(new java.awt.Color(255, 153, 153));
-        jButtonEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/imagenes/estadisticas.png"))); // NOI18N
-        jButtonEstadisticas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEstadisticasActionPerformed(evt);
-            }
-        });
-
         jButtonStock.setBackground(new java.awt.Color(255, 153, 153));
         jButtonStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/imagenes/proveedores.png"))); // NOI18N
         jButtonStock.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +106,14 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnInformes.setBackground(new java.awt.Color(255, 153, 153));
+        btnInformes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/imagenes/estadisticas.png"))); // NOI18N
+        btnInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -123,10 +123,10 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Productos, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Productos2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Productos2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonStock, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,8 +140,8 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonStock, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonStock, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,14 +206,6 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstadisticasActionPerformed
-
-        JFInicio inicio = new JFInicio();
-        inicio.setVisible(true);
-
-        this.dispose();
-    }//GEN-LAST:event_jButtonEstadisticasActionPerformed
-
     private void jButtonStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStockActionPerformed
         JFStock stock = new JFStock();
         stock.setVisible(true);
@@ -228,6 +220,13 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonProductosActionPerformed
 
+    private void btnInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformesActionPerformed
+        JFInformes informes = new JFInformes();
+        informes.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_btnInformesActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(() -> new JFPaginaPrincipal().setVisible(true));
@@ -237,7 +236,7 @@ public class JFPaginaPrincipal extends javax.swing.JFrame {
     private java.awt.Label Productos;
     private java.awt.Label Productos2;
     private java.awt.Label Stock;
-    private javax.swing.JButton jButtonEstadisticas;
+    private javax.swing.JButton btnInformes;
     private javax.swing.JButton jButtonProductos;
     private javax.swing.JButton jButtonStock;
     private javax.swing.JLabel jLabel4;
