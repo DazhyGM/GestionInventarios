@@ -10,7 +10,6 @@ public class UsuarioModel {
     private String telefono;
     
 
-
     public UsuarioModel(String numeroDocumento, String nombre, String apellido, String correo, String contrasena, String telefono) {
         this.numeroDocumento = numeroDocumento;
         this.nombre = nombre;

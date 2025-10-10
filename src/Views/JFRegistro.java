@@ -6,9 +6,8 @@ import javax.swing.JOptionPane;
 
 public class JFRegistro extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFRegistro.class.getName());
     
-    private UsuarioController usuarioController;
+    private final UsuarioController usuarioController;
     public JFRegistro() {
         initComponents();
         usuarioController = new UsuarioController();

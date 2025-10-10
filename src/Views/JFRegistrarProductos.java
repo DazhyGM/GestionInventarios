@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 public class JFRegistrarProductos extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFRegistrarProductos.class.getName());
     private ProductosController productoController;
     
 
@@ -294,6 +293,14 @@ public class JFRegistrarProductos extends javax.swing.JFrame {
         Double.parseDouble(precio), 
         Integer.parseInt(stock));
         JOptionPane.showMessageDialog(this, "Producto registrado correctamente");
+        
+        JFTablaProductos productos = new JFTablaProductos();
+            productos.setVisible(true);
+            productos.setLocationRelativeTo(null);
+
+
+            this.dispose();
+        
         this.dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

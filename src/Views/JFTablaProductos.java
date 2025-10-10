@@ -5,15 +5,13 @@ import Models.ProductosModel;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
-public class JFTablaProductos extends javax.swing.JFrame {
+public final class JFTablaProductos extends javax.swing.JFrame {
 
     private ProductosController controller;
-    private DefaultTableModel tableModel;
+    private final DefaultTableModel tableModel;
 
     public JFTablaProductos() {
         initComponents();
@@ -66,15 +64,9 @@ public class JFTablaProductos extends javax.swing.JFrame {
                 boolean isSelected, boolean hasFocus, int row, int column) {
             String texto = "";
             switch (column) {
-                case 6:
-                    texto = "Modificar";
-                    break;
-                case 7:
-                    texto = "Eliminar";
-                    break;
-                case 8:
-                    texto = "Ver";
-                    break;
+                case 6 -> texto = "Modificar";
+                case 7 -> texto = "Eliminar";
+                case 8 -> texto = "Ver";
             }
             setText(texto);
             return this;
@@ -83,7 +75,7 @@ public class JFTablaProductos extends javax.swing.JFrame {
 
     class BotonEditor extends DefaultCellEditor {
 
-        private JButton button;
+        private final JButton button;
         private int filaSeleccionada;
         private int columnaSeleccionada;
 
@@ -95,16 +87,15 @@ public class JFTablaProductos extends javax.swing.JFrame {
                 if (filaSeleccionada >= 0 && columnaSeleccionada >= 6 && columnaSeleccionada <= 8) {
                     int id = (int) tableModel.getValueAt(filaSeleccionada, 0);
                     switch (columnaSeleccionada) {
-                        case 6:
+                        case 6 -> {
                             int fila = TablaProductos.getSelectedRow();
                             if (fila != -1) {
                                 new JFactualizarProductos(id, JFTablaProductos.this::cargarProductos).setVisible(true);
                             } else {
                                 JOptionPane.showMessageDialog(JFTablaProductos.this, "Seleccione un producto primero");
                             }
-
-                            break;
-                        case 7:
+                        }
+                        case 7 -> {
                             String nombreProducto = (String) tableModel.getValueAt(filaSeleccionada, 1);       
                             int confirm = JOptionPane.showConfirmDialog(JFTablaProductos.this,
                                     "¿Está seguro de marcar el producto '" + nombreProducto + "' (ID: "+ id +") como INACTIVO?",
@@ -119,10 +110,8 @@ public class JFTablaProductos extends javax.swing.JFrame {
 
                                 cargarProductos();
                             }
-                            break;
-                        case 8:
-                            new JFdetalleProducto(id).setVisible(true);
-                            break;
+                        }
+                        case 8 -> new JFdetalleProducto(id).setVisible(true);
                     }
                 }
             });
@@ -135,15 +124,9 @@ public class JFTablaProductos extends javax.swing.JFrame {
             columnaSeleccionada = column;
             String texto = "";
             switch (column) {
-                case 6:
-                    texto = "Modificar";
-                    break;
-                case 7:
-                    texto = "Eliminar";
-                    break;
-                case 8:
-                    texto = "Ver";
-                    break;
+                case 6 -> texto = "Modificar";
+                case 7 -> texto = "Eliminar";
+                case 8 -> texto = "Ver";
             }
             button.setText(texto);
             return button;

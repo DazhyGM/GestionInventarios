@@ -6,10 +6,9 @@ import Models.ProductosModel;
 
 public class JFactualizarProductos extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFactualizarProductos.class.getName());
-    private ProductosController modificarProductos;
-    private int idProducto;
-    private Runnable onProductoActualizado;
+    private final ProductosController modificarProductos;
+    private final int idProducto;
+    private final Runnable onProductoActualizado;
 
    public JFactualizarProductos(int id, Runnable onProductoActualizado) {
     initComponents();
@@ -40,14 +39,12 @@ private void cargarDatosProducto() {
         textNombre.setText(productoEncontrado.getNombre());
         textDescripcion.setText(productoEncontrado.getDescripcion());
         textPrecio.setText(String.valueOf(productoEncontrado.getPrecio()));
-        textStock.setText(String.valueOf(productoEncontrado.getStock()));
         comboCategorias.setSelectedItem(productoEncontrado.getCategoria());
     } else {
         JOptionPane.showMessageDialog(this, "Producto no encontrado");
         this.dispose();
 
     }
-
    
 }
 
@@ -62,7 +59,6 @@ private void cargarDatosProducto() {
         textNombre = new javax.swing.JTextField();
         textDescripcion = new javax.swing.JTextField();
         textPrecio = new javax.swing.JTextField();
-        textStock = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -112,35 +108,23 @@ private void cargarDatosProducto() {
             }
         });
 
-        textStock.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 12))); // NOI18N
-        textStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textStockActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 105, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(1, 106, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textStock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(102, 102, 102))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180))))
+                    .addComponent(comboCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(102, 102, 102))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 191, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,9 +139,7 @@ private void cargarDatosProducto() {
                 .addComponent(comboCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(textStock, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(88, 88, 88)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
@@ -224,10 +206,6 @@ private void cargarDatosProducto() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textStockActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textStockActionPerformed
-
     private void textPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textPrecioActionPerformed
@@ -245,16 +223,15 @@ private void cargarDatosProducto() {
         String descripcion = textDescripcion.getText();
         String categoria = (String) comboCategorias.getSelectedItem();
         String precioStr = textPrecio.getText().trim();      
-        String stockStr = textStock.getText().trim();
-        if (nombre.isEmpty() || descripcion.isEmpty() || categoria.isEmpty() || precioStr.isEmpty() || stockStr.isEmpty()) {
+        if (nombre.isEmpty() || descripcion.isEmpty() || categoria.isEmpty() || precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
             double precio = Double.parseDouble(precioStr);
-            int stock = Integer.parseInt(stockStr);
+   
 
-            modificarProductos.modificarProductos(idProducto, nombre, descripcion, categoria,precio, stock);
+            modificarProductos.modificarProductos(idProducto, nombre, descripcion, categoria,precio);
 
             JOptionPane.showMessageDialog(this, "Producto actualizado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             if (onProductoActualizado != null) {
@@ -286,6 +263,5 @@ private void cargarDatosProducto() {
     private javax.swing.JTextField textID;
     private javax.swing.JTextField textNombre;
     private javax.swing.JTextField textPrecio;
-    private javax.swing.JTextField textStock;
     // End of variables declaration//GEN-END:variables
 }

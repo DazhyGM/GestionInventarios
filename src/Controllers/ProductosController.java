@@ -3,9 +3,9 @@ package Controllers;
 import Models.ProductosModel;
 import Services.ProductosService;
 import java.util.List;
-import javax.swing.JComboBox;
 import java.io.FileOutputStream;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import org.jfree.chart.ChartUtilities;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
@@ -13,16 +13,16 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 public class ProductosController {
-    private ProductosService productoService;
+    private final ProductosService productoService;
     
     public ProductosController() {
         this.productoService = new ProductosService();
@@ -33,7 +33,7 @@ public class ProductosController {
         productoService.agregarProductos(producto);
     }
 
-    public void modificarProductos(int id, String nombre, String descripcion, String categoria,double precio, int stock){
+    public void modificarProductos(int id, String nombre, String descripcion, String categoria,double precio){
 
         ProductosModel productoExistente = productoService.detalleProducto(id);
         
@@ -42,12 +42,6 @@ public class ProductosController {
             productoExistente.setDescripcion(descripcion);
             productoExistente.setCategoria(categoria);
             productoExistente.setPrecio(precio);
-            productoExistente.setStock(stock);
-            
-            if (stock > 0 && productoExistente.getEstadoId() == 3) {
-                 productoExistente.setEstadoId(1); 
-            }
-            
             productoService.actualizarProductos(productoExistente);
         }
     }
@@ -73,7 +67,6 @@ public class ProductosController {
     public DefaultPieDataset mostrarEstados(){
     return productoService.GraficarEstados();
     }
-    
     
     
     public JFreeChart crearPdfBarras(){
@@ -141,10 +134,9 @@ public class ProductosController {
                 
                 if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(archivoPDF);
-            }
+                }
 
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
+        } catch (DocumentException | IOException e) {
+          }
     }
 }

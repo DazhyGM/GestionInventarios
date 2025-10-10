@@ -6,7 +6,7 @@ import java.util.List;
 
 public class UsuarioController {
     
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     public UsuarioController() {
         this.usuarioService = new UsuarioService();

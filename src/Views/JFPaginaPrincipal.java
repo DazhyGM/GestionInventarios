@@ -3,7 +3,6 @@ package Views;
 
 public class JFPaginaPrincipal extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFPaginaPrincipal.class.getName());
 
     public JFPaginaPrincipal() {
         initComponents();

@@ -1,10 +1,6 @@
 
 package Models;
 
-/**
- *
- * @author DAZHY
- */
 public class SesionUsuario {
     private static UsuarioModel usuarioActual;
     

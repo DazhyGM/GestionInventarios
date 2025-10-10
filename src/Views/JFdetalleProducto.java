@@ -6,11 +6,8 @@ import java.util.List;
 import Models.ProductosModel;
 
 public class JFdetalleProducto extends javax.swing.JFrame {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFdetalleProducto.class.getName());
-    private ProductosController verProductos;
-    private int idProducto;
-    
-    
+    private final ProductosController verProductos;
+    private final int idProducto;
     
 
     public JFdetalleProducto(int id) {
@@ -43,8 +40,7 @@ public class JFdetalleProducto extends javax.swing.JFrame {
     lblStock.setText(String.valueOf(productoEncontrado.getStock()));    } else {
         JOptionPane.showMessageDialog(this, "Producto no encontrado");
         this.dispose();
-    }
-
+        }
     }
 
     
@@ -203,10 +199,6 @@ public class JFdetalleProducto extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

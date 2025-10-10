@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 
 public class JFLogin extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFLogin.class.getName());
 
-    private UsuarioController usuarioController; 
+
+    private final UsuarioController usuarioController; 
     public JFLogin() {
         initComponents();
         usuarioController = new UsuarioController(); 
@@ -18,9 +18,10 @@ public class JFLogin extends javax.swing.JFrame {
         jLabelRecuperar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabelRecuperar.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             new JFRecuperarContrasena().setVisible(true);
-            dispose(); // Cierra la ventana de login
+            dispose();
         }
     });
         

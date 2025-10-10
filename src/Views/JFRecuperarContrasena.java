@@ -6,11 +6,8 @@ import javax.swing.JOptionPane;
 
 public class JFRecuperarContrasena extends javax.swing.JFrame {
     
-    private UsuarioController usuarioController;
-    
     public JFRecuperarContrasena() {
         initComponents();
-        usuarioController = new UsuarioController();
         setLocationRelativeTo(null);
     }
 
@@ -154,6 +151,11 @@ public class JFRecuperarContrasena extends javax.swing.JFrame {
         UsuarioController controller = new UsuarioController();
         String mensaje = controller.recuperarContrasena(correo);
         JOptionPane.showMessageDialog(this, mensaje);
+        
+         JFLogin login = new JFLogin();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -166,11 +168,6 @@ public class JFRecuperarContrasena extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
-    
-    
-    
-        
-    
     
     public static void main(String args[]) {
 

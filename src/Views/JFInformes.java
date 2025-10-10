@@ -1,24 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Views;
 import Controllers.ProductosController;
-import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import javax.swing.*;
 
 import java.awt.*;
 public class JFInformes extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JFInformes.class.getName());
     private ProductosController productoController;
-    
-
     
     public JFInformes() {
         initComponents();
@@ -36,12 +29,31 @@ public class JFInformes extends javax.swing.JFrame {
     dataset
     );
     ChartPanel panelGrafica = new ChartPanel(graficaBarras);
-    panelGrafica.setPreferredSize(new Dimension(350, 300));
+    panelGrafica.setPreferredSize(new Dimension(500, 370));
     
         JpanelBarras.removeAll();
         JpanelBarras.setLayout(new BorderLayout());
         JpanelBarras.add(panelGrafica, BorderLayout.CENTER);
         JpanelBarras.validate();
+        
+
+        org.jfree.chart.plot.CategoryPlot plot = graficaBarras.getCategoryPlot();
+
+
+        org.jfree.chart.axis.CategoryAxis axis = plot.getDomainAxis();
+
+
+        axis.setMaximumCategoryLabelWidthRatio(1.0f);
+
+
+        axis.setCategoryLabelPositions(
+            org.jfree.chart.axis.CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 6.0)
+        );
+
+
+plot.setDomainAxisLocation(org.jfree.chart.axis.AxisLocation.BOTTOM_OR_RIGHT);
+graficaBarras.setPadding(new org.jfree.ui.RectangleInsets(10, 10, 50, 10));
+
 
     }
     
@@ -51,8 +63,7 @@ public class JFInformes extends javax.swing.JFrame {
     JFreeChart graficaTorta  = ChartFactory.createPieChart("Inactivos/ Activos", dataset, true, true,false);
     
     ChartPanel panelTorta  = new ChartPanel(graficaTorta);
-    panelTorta.setPreferredSize(new Dimension(350, 300));
-    
+    panelTorta.setPreferredSize(new Dimension(500, 300));
     
     jpanelTorta.removeAll();
     jpanelTorta.setLayout(new BorderLayout());
@@ -60,9 +71,6 @@ public class JFInformes extends javax.swing.JFrame {
     jpanelTorta.validate();
     }
     
-    
-    
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,7 +92,7 @@ public class JFInformes extends javax.swing.JFrame {
         JpanelBarras.setLayout(JpanelBarrasLayout);
         JpanelBarrasLayout.setHorizontalGroup(
             JpanelBarrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 383, Short.MAX_VALUE)
         );
         JpanelBarrasLayout.setVerticalGroup(
             JpanelBarrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +105,7 @@ public class JFInformes extends javax.swing.JFrame {
         jpanelTorta.setLayout(jpanelTortaLayout);
         jpanelTortaLayout.setHorizontalGroup(
             jpanelTortaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpanelTortaLayout.setVerticalGroup(
             jpanelTortaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,12 +143,12 @@ public class JFInformes extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JpanelBarras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpanelTorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addComponent(jpanelTorta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()

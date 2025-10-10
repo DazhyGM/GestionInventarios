@@ -38,7 +38,6 @@ public class EnvioCorreoController {
             System.out.println("Correo enviado correctamente a " + to);
 
         } catch (MessagingException e) {
-            e.printStackTrace();
             System.err.println("Error al enviar el correo: " + e.getMessage());
         }
     }
